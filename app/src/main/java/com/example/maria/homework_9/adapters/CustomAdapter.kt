@@ -1,6 +1,8 @@
 package com.example.maria.homework_9.adapters
 
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.maria.homework_9.R
@@ -10,11 +12,19 @@ import com.example.maria.homework_9.entities.Message
 class CustomAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
-    private var messages: ArrayList<Message> = ArrayList()
+    var messages: ArrayList<Message> = ArrayList()
     private var listener: OnItemClickListener? = null
 
-    private var user1: Int = 0
-    private var user2: Int = 0
+    var user1: String = "User1"
+    var user2: String = "User2"
+
+    interface OnItemClickListener {
+        fun onItemClick(message: Message, view: View)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
 
     inner class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.textView)
@@ -23,18 +33,13 @@ class CustomAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             view.setOnClickListener {
                 val position = adapterPosition
                 if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener!!.onItemClick(messages[position-1], view)
+                    listener!!.onItemClick(messages[position - 1], view)
                 }
 
             }
         }
     }
-    interface OnItemClickListener {
-        fun onItemClick(message: Message, view: View)
-    }
-    fun setOnItenClickListener(listener: OnItemClickListener) {
-        this.listener = listener
-    }
+
     internal inner class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val user1Quantity: TextView = view.findViewById(R.id.user1_textView)
         val user2Quantity: TextView = view.findViewById(R.id.user2_textView)
@@ -58,8 +63,8 @@ class CustomAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 holder.textView.text = messages[position - 1].text
             }
             is HeaderViewHolder -> {
-                holder.user1Quantity.text = "User1: " + user1.toString()
-                holder.user2Quantity.text = "User2: " + user2.toString()
+                holder.user1Quantity.text = user1
+                holder.user2Quantity.text = user2
             }
         }
     }
@@ -93,14 +98,6 @@ class CustomAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun setMessages(messages: List<Message>) {
         this.messages = messages as ArrayList<Message>
-        user1=0
-        user2=0
-        for(i in messages.indices){
-            if(messages[i].userId==0)
-                user1++
-            else
-                user2++
-        }
         notifyDataSetChanged()
     }
 
