@@ -39,9 +39,9 @@ internal class SampleDecoration(context: Context): RecyclerView.ItemDecoration()
                 }
                 1 -> {
                     mPaint.color = Color.parseColor("#4527A0")
-                    c.drawRect(view.left.toFloat()-11.px, view.bottom.toFloat()+11.px, view.right.toFloat()+11.px, (view.bottom - view.height-11.px).toFloat(), mPaint)
+                    c.drawRect(view.left.toFloat()-3.px, view.bottom.toFloat()+3.px, view.right.toFloat()+3.px, (view.bottom - view.height-3.px).toFloat(), mPaint)
                     mPaint.color = Color.parseColor("#B39DDB")
-                    c.drawRect(view.left.toFloat()-8.px, view.bottom.toFloat()+8.px, view.right.toFloat()+8.px, (view.bottom - view.height-8.px).toFloat(), mPaint)
+                    c.drawRect(view.left.toFloat(), view.bottom.toFloat(), view.right.toFloat(), (view.bottom - view.height).toFloat(), mPaint)
                 }
                 2 -> {
                     var width:Int
@@ -51,9 +51,9 @@ internal class SampleDecoration(context: Context): RecyclerView.ItemDecoration()
                         tv.width
                     } else et.width
                     mPaint.color = Color.parseColor("#0097A7")
-                    c.drawRect(view.right.toFloat()-11.px-width, view.bottom.toFloat()+11.px, view.right.toFloat()+11.px, (view.bottom - view.height-11.px).toFloat(), mPaint)
+                    c.drawRect(view.right.toFloat()-16.px-width, view.bottom.toFloat()+3.px, view.right.toFloat()+3.px, (view.bottom - view.height-3.px).toFloat(), mPaint)
                     mPaint.color = Color.parseColor("#80DEEA")
-                    c.drawRect(view.right.toFloat()-8.px-width, view.bottom.toFloat()+8.px, view.right.toFloat()+8.px, (view.bottom - view.height-8.px).toFloat(), mPaint)
+                    c.drawRect(view.right.toFloat()-13.px-width, view.bottom.toFloat(), view.right.toFloat(), (view.bottom - view.height).toFloat(), mPaint)
                 }
             }
         }

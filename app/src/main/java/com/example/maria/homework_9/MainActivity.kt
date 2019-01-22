@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         adapter.setOnItemClickListener(object : CustomAdapter.OnItemClickListener {
-            override fun onItemClick(message: Message, view: View) {
+            override fun onItemLongClick(message: Message, view: View) {
                 messageViewModel!!.showPopupMenu(view, message, this@MainActivity)
             }
         })

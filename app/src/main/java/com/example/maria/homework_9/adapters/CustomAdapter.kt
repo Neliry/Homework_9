@@ -19,23 +19,24 @@ class CustomAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var user2: String = "User2"
 
     interface OnItemClickListener {
-        fun onItemClick(message: Message, view: View)
+        fun onItemLongClick(message: Message, view: View)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
 
-    inner class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view){
+
         val textView: TextView = view.findViewById(R.id.textView)
 
         init {
-            view.setOnClickListener {
+            itemView.setOnLongClickListener{
                 val position = adapterPosition
                 if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener!!.onItemClick(messages[position - 1], view)
+                    listener!!.onItemLongClick(messages[position - 1], view)
                 }
-
+                true
             }
         }
     }
